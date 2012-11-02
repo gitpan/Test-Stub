@@ -24,7 +24,7 @@ Test::Stub::Driver
 
         stub($stuff)->foo('bar');
 
-    "$stuff-"foo()> returns 'bar'.
+    "$stuff->foo()" returns 'bar'.
 
 AUTHOR
     Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
