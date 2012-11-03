@@ -20,7 +20,7 @@ no_index:
 provides:
   Test::Stub:
     file: lib/Test/Stub.pm
-    version: 0.02
+    version: 0.03
   Test::Stub::Driver:
     file: lib/Test/Stub.pm
     version: 0
@@ -30,4 +30,4 @@ requires:
   perl: 5.008001
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03

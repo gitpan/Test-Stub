@@ -41,7 +41,7 @@
    "provides" : {
       "Test::Stub" : {
          "file" : "lib/Test/Stub.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       },
       "Test::Stub::Driver" : {
          "file" : "lib/Test/Stub.pm",
@@ -54,5 +54,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }

@@ -4,8 +4,14 @@ NAME
 SYNOPSIS
         use Test::Stub;
 
+        # DSL style
         my $agent = LWP::UserAgent->new();
         stub($agent)->get(HTTP::Response->new(200, "OK"));
+        is($agent->get('http://www.aiseikai.or.jp/')->code, 200);
+
+        # simple style
+        my $agent = LWP::UserAgent->new();
+        make_stub($agent, 'get', HTTP::Response->new(200, "OK"));
         is($agent->get('http://www.aiseikai.or.jp/')->code, 200);
 
 DESCRIPTION
@@ -14,6 +20,10 @@ DESCRIPTION
 EXPORTABLE FUNCTIONS
     stub($stuff) : Test::Stub::Driver
         Create a new instance of Test::Stub::Driver.
+
+    make_stub($object, $method, $stub) : Undef
+        Make monadic class from blessed($object) and add a $method with
+        $stub.
 
 Test::Stub::Driver
     This class only provides a AUTOLOAD method.
