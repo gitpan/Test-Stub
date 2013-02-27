@@ -2,7 +2,7 @@ package Test::Stub;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 use parent qw/Exporter/;
 
 our @EXPORT = qw/stub make_stub/;
@@ -35,6 +35,10 @@ sub make_stub {
 }
 
 package Test::Stub::Driver;
+use strict;
+use warnings;
+
+use Carp qw(croak);
 
 our $AUTOLOAD;
 sub DESTROY { }
@@ -43,9 +47,16 @@ sub AUTOLOAD {
     my $method = $AUTOLOAD;
 
     my $self = shift;
-    Test::Stub::make_stub($self, $method, @_);
 
-    return;
+    if (UNIVERSAL::can($$self, $method) || UNIVERSAL::can($$self, 'AUTOLOAD')) {
+        Test::Stub::make_stub($self, $method, @_);
+        return;
+    } else {
+        # Throw the same kind of error that perl would throw if you attempt to call
+        # some unknown method on an object
+        my $package = ref($$self);
+        croak(qq{Can't locate object method "$method" via package "$package"});
+    }
 }
 
 1;
